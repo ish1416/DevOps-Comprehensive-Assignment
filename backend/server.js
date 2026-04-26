@@ -6,6 +6,12 @@ const path = require("path");
 const connectDB = require("./config/db");
 
 const userRoutes = require("./routes/userRoutes");
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+});
+
+
 
 dotenv.config();
 connectDB();
